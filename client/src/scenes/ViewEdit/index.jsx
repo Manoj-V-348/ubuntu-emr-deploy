@@ -212,7 +212,7 @@ const ViewEdit = () => {
   const ID = useSelector((state) => state.id);
 
   const GetPdf = () => {
-    const pdfUrl = `http://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/pdf/${ID}`; // Replace with the actual URL of your PDF file
+    const pdfUrl = `${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/pdf/${ID}`; // Replace with the actual URL of your PDF file
 
     fetch(pdfUrl, {
       headers: {
@@ -249,10 +249,10 @@ const ViewEdit = () => {
   let osImg = "";
 
   if (record[0].posterior_segment_od_image !== "") {
-    odImg = `http://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/static/images/${record[0].posterior_segment_od_image}.jpg`;
+    odImg = `${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/static/images/${record[0].posterior_segment_od_image}.jpg`;
   }
   if (record[0].posterior_segment_os_image !== "") {
-    osImg = `http://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/static/images/${record[0].posterior_segment_os_image}.jpg`;
+    osImg = `${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/static/images/${record[0].posterior_segment_os_image}.jpg`;
   }
 
   const initialValuesRecord = {
@@ -457,7 +457,7 @@ const ViewEdit = () => {
       console.log(pair[0] + ", " + pair[1]);
     }
     const updatedRecordResponse = await fetch(
-      `http://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/records/update/${params.id}`,
+      `${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/records/update/${params.id}`,
       {
         method: "PUT",
         headers: { Authorization: `Bearer ${token}` },
@@ -477,7 +477,7 @@ const ViewEdit = () => {
 
   const deleteRecord = async (values, onSubmitProps) => {
     const deletedRecord = await fetch(
-      `http://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/records/delete/${params.id}`,
+      `${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/records/delete/${params.id}`,
       {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },

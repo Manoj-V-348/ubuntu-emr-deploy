@@ -14,7 +14,7 @@ const HomePage = () => {
 
   const recentRecords = async () => {
     const response = await fetch(
-      `http://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/records`,
+      `${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/records`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
@@ -99,7 +99,9 @@ const HomePage = () => {
         >
           <Button
             variant="contained"
-            onClick={()=>{navigate("/records/post")}}
+            onClick={() => {
+              navigate("/records/post");
+            }}
             sx={{ gridColumn: "2/ span 4" }}
           >
             CREATE RECORD

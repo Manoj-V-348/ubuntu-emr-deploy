@@ -386,7 +386,7 @@ const Form = () => {
     formData.append("edited_timestamp", date);
 
     const savedRecordResponse = await fetch(
-      `http://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/records`,
+      `${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/records`,
       {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },

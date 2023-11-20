@@ -1,4 +1,3 @@
-
 import { ArrowRightAlt, Category } from "@mui/icons-material";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { render } from "@testing-library/react";
@@ -15,14 +14,14 @@ const Query = () => {
   const navigate = useNavigate();
   const records = useSelector((state) => state.records, []);
   const stateId = useSelector((state) => state.id, []);
-  const token = useSelector((state) => state.token)
+  const token = useSelector((state) => state.token);
 
   const getRecord = async () => {
     const response = await fetch(
-      `http://${process.env.HOSTNAME}${process.env.PORT}/records/${stateId}`,
+      `${process.env.REACT_APP_PROTOCOL}://${process.env.HOSTNAME}${process.env.PORT}/records/${stateId}`,
       {
         method: "GET",
-        headers: {Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       }
     );
     const data = await response.json();
@@ -166,10 +165,10 @@ const Query = () => {
                     onClick={() => {
                       const getRecord = async () => {
                         const response = await fetch(
-                          `http://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/records/${id}`,
+                          `${process.env.REACT_APP_PROTOCOL}://${process.env.REACT_APP_HOSTNAME}${process.env.REACT_APP_PORT}/records/${id}`,
                           {
                             method: "GET",
-                            headers: {Authorization: `Bearer ${token}`}
+                            headers: { Authorization: `Bearer ${token}` },
                           }
                         );
                         const data = await response.json();

@@ -1,7 +1,7 @@
 import FlexBetween from "components/FlexBetween";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 import {
   Box,
   IconButton,
@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { Search, DarkMode, LightMode } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import  {
+import {
   setMode,
   setCategory,
   setQuery,
@@ -64,17 +64,17 @@ const Navbar = () => {
   const mode = useSelector((state) => state.mode);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const token = useSelector((state)=> state.token)
+  const token = useSelector((state) => state.token);
   const dark = palette.primary.main;
   const host = process.env.REACT_APP_HOSTNAME;
   const port = process.env.REACT_APP_PORT;
 
   const handleFormSubmit = async (values, onSubmitProps) => {
     const response = await fetch(
-      `http://${host}${port}/query/${values.category}/${values.query}`,
+      `${process.env.REACT_APP_PROTOCOL}://${host}${port}/query/${values.category}/${values.query}`,
       {
         method: "GET",
-        headers: {Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       }
     );
     if (response.status === 422) {
@@ -222,7 +222,7 @@ const Navbar = () => {
                       name="query"
                       value={values.query}
                     />
-                    <IconButton type="submit" >
+                    <IconButton type="submit">
                       <Search />
                     </IconButton>
                   </Box>
